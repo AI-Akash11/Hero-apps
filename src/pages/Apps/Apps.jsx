@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useApps from '../../hooks/useApps';
 import AppCard from '../../components/AppCard/AppCard';
 import { DotLoader } from 'react-spinners';
+import Spinner from '../../components/Spinner/Spinner';
+import { FaSearch } from 'react-icons/fa';
+import AppNotFound from '../../components/ErrorPage/AppNotFound';
 
 const Apps = () => {
-    const { apps, loading} = useApps();
+    const { apps, loading } = useApps();
+    const [search, setSearch] = useState('');
+
+    const term = search.trim().toLocaleLowerCase()
+
+    const searchedApps = term ?
+        apps.filter(app => app.title.toLocaleLowerCase().includes(term)) :
+        apps;
+    console.log(searchedApps)
 
     return (
         <div className='bg-gray-200 p-4 md:p-8 lg:p-15'>
@@ -13,9 +24,14 @@ const Apps = () => {
                 <p className='text-gray-500 mt-3 text-xs md:text-base'>Explore All Apps on the Market developed by us. We code for Millions</p>
             </div>
             <div className='flex flex-col md:flex-row gap-5 justify-between items-center mx-5 mb-6'>
-                <p className='text-2xl font-semibold'>({apps.length})apps found</p>
-                <label className='input'>
+                <p className='text-2xl font-semibold'>({searchedApps.length})apps found</p>
+                <label className='input relative'>
+                    <div className='text-gray-500'>
+                        <FaSearch></FaSearch>
+                    </div>
                     <input
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
                         type='search'
                         placeholder='Search Apps'
                     />
@@ -23,12 +39,14 @@ const Apps = () => {
             </div>
             {
                 loading ?
-                <DotLoader></DotLoader> :
-                <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6'>
-                {
-                    apps.map((app) => <AppCard app={app} key={app.id}></AppCard>)
-                }
-            </div>
+                    <Spinner></Spinner> :
+                    searchedApps.length === 0 ?
+                    <AppNotFound setSearch={setSearch}></AppNotFound>:
+                    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6'>
+                        {
+                            searchedApps.map((app) => <AppCard app={app} key={app.id}></AppCard>)
+                        }
+                    </div>
             }
         </div>
     );

@@ -1,9 +1,11 @@
 import React from 'react';
+import Spinner from '../../components/Spinner/Spinner';
+import PageNotFound from '../../components/ErrorPage/PageNotFound';
 
 const Installation = () => {
     return (
-        <div>
-            <h1>Installed Apps are Here</h1>
+        <div className=''>
+            <PageNotFound></PageNotFound>
         </div>
     );
 };
