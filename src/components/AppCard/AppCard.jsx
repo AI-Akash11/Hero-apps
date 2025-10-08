@@ -1,11 +1,12 @@
 import { Star } from 'lucide-react';
 import React from 'react';
 import { FaDownload, FaStar } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 const AppCard = ({app}) => {
-    const {image, title,companyName,ratingAvg,downloads} = app;
+    const {image, title,companyName,ratingAvg,downloads,id} = app;
     return (
-        <div className='bg-white p-5 rounded-lg hover:scale-103 transition'>
+        <Link to={`/apps/${id}`} className='bg-white p-5 rounded-lg hover:scale-103 transition'>
             <div className='w-full'>
                 <img className='w-full object-cover' src={image}/>
             </div>
@@ -14,7 +15,7 @@ const AppCard = ({app}) => {
                 <div className='flex items-center gap-1 text-green-700 bg-green-100 p-1 rounded-lg text-xs md:text-sm lg:text-base'><p><FaDownload /></p> <p>{downloads/1000}K</p></div>
                 <div className='flex items-center gap-1 text-amber-400 bg-amber-100 p-1 rounded-lg text-xs md:text-sm lg:text-base'><p><FaStar /></p> <p>{ratingAvg}</p></div>
             </div>
-        </div>
+        </Link>
     );
 };
 
