@@ -2,6 +2,7 @@
 
 import { Github } from 'lucide-react';
 import React from 'react';
+import { Link, NavLink } from 'react-router';
 
 const Navbar = () => {
     return (
@@ -19,21 +20,21 @@ const Navbar = () => {
                         <li>Installation</li>
                     </ul>
                 </div>
-                <a className="text-xl flex items-center gap-2 ml-2">
+                <Link to={'/'} className="text-xl font-semibold flex items-center gap-2 ml-2 text-[#6f39e6]">
                     <img className='w-10 h-10' src="https://i.ibb.co.com/zHsd0cH4/logo.png" />
-                    Hero-Apps</a>
+                    HERO.IO</Link>
             </div>
             <div className="hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 space-x-5 text-lg font-semibold">
-                    <li>Home</li>
-                    <li>Apps</li>
-                    <li>Installation</li>
+                    <NavLink to={'/'}>Home</NavLink>
+                    <NavLink to={'/apps'}>Apps</NavLink>
+                    <NavLink to={'/installation'}>Installation</NavLink>
                 </ul>
             </div>
-            <div className="btn">
+            <Link to={'https://github.com/AI-Akash11'} className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white">
                 <Github></Github>
                 <span> Contribute</span>
-            </div>
+            </Link>
         </div>
     );
 };
