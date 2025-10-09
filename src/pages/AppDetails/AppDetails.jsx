@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 import useApps from '../../hooks/useApps';
 import Spinner from '../../components/Spinner/Spinner';
 import iconDownloads from '../../assets/icon-downloads.png'
 import iconRatings from '../../assets/icon-ratings.png'
 import iconReviews from '../../assets/icon-review.png'
 import { Bar, BarChart, Legend, Tooltip, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+import { toast } from 'react-toastify';
 
 
 const AppDetails = () => {
@@ -22,7 +23,7 @@ const AppDetails = () => {
         if(existingApps){
             const isDuplicate = existingApps.some(a=> a.id === appD.id);
             if(isDuplicate){
-                alert("app is already installed");
+                toast.error("app is already installed");
                 return;
             }
             updatedApps = [...existingApps,appD]
@@ -31,12 +32,12 @@ const AppDetails = () => {
         }
         localStorage.setItem('installed', JSON.stringify(updatedApps));
         setIsInstalled(true);
+        toast.success(`${title} installed sucessfully`)
     }
 
-    console.log(isInstalled);
     return (
         <div className='p-5 md:p-10 lg:p-15'>
-            <div className='flex flex-col lg:flex-row gap-10 border-b-1 pb-5 md:pb-10 items-center'>
+            <div className='flex flex-col lg:flex-row gap-20 border-b-1 pb-5 md:pb-10 items-center'>
                 <div>
                     <img className='w-[350px]' src={image} />
                 </div>
@@ -86,6 +87,9 @@ const AppDetails = () => {
             <div className='pt-5 md:pt-10'>
                 <p className='font-semibold text-2xl md:text-3xl mb-2 md:mb-4'>Description</p>
                 <p className='text-gray-500 text-sm md:text-base'>{description}</p>
+            </div>
+            <div className='flex justify-center items-center mt-8'>
+                <Link className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white" to={"/apps"}>Back To AllApps</Link>
             </div>
         </div>
     );

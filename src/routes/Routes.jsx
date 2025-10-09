@@ -4,11 +4,16 @@ import Home from "../pages/Home/Home";
 import Apps from "../pages/Apps/Apps";
 import Installation from "../pages/Installation/Installation";
 import AppDetails from "../pages/AppDetails/AppDetails";
+import Spinner from "../components/Spinner/Spinner";
+import PageNotFound from "../components/ErrorPage/PageNotFound"
+import AppNotFound from "../components/ErrorPage/AppNotFound";
 
 export const router = createBrowserRouter([
     {
         path:"/",
         Component: MainLayout,
+        errorElement: <PageNotFound/>,
+        hydrateFallbackElement: <Spinner/>,
         children:[
             {
                 index: true,
@@ -24,7 +29,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/apps/:id",
-                Component: AppDetails
+                Component: AppDetails,
+                errorElement: <AppNotFound></AppNotFound>
             }
         ]
     }

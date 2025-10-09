@@ -8,7 +8,7 @@ const AppCard = ({app}) => {
     return (
         <Link to={`/apps/${id}`} className='bg-white p-5 rounded-lg hover:scale-103 transition'>
             <div className='w-full'>
-                <img className='w-full object-cover' src={image}/>
+                <img className='w-full object-cover rounded-2xl' src={image}/>
             </div>
             <h3 className='text-2xl mt-4 font-semibold text-center'>{title} <br className='lg:hidden' /> <small className='font-medium text-xs'>by</small> <br className='lg:hidden'/> <span className='text-lg text-blue-800'>{companyName}</span></h3>
             <div className='flex justify-between items-center mt-2 md:mt-4'>

@@ -10,7 +10,7 @@ const AppNotFound = ({setSearch}) => {
             </div>
             <p className='font-semibold text-5xl mb-2'>OPPS!! APP NOT FOUND</p>
             <p className='font-light text-sm text-gray-600 mb-6'>The App you are requesting is not found on our system.  please try another apps</p>
-            <button onClick={()=> setSearch('')} className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white">Go Back!</button>
+            <Link to={"/apps"} onClick={()=> setSearch('')} className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white">Go Back!</Link>
         </div>
     );
 };

@@ -18,8 +18,8 @@ const Apps = () => {
 
     return (
         <div className='bg-gray-200 p-4 md:p-8 lg:p-15'>
-            <div className='mb-8 text-center'>
-                <h3 className='font-bold text-3xl md:text-5xl'>Our All Applications</h3>
+            <div className='my-8 md:mb-15 text-center'>
+                <h3 className='font-bold text-3xl md:text-5xl lg:text-6xl'>Our All Applications</h3>
                 <p className='text-gray-500 mt-3 text-xs md:text-base'>Explore All Apps on the Market developed by us. We code for Millions</p>
             </div>
             <div className='flex flex-col md:flex-row gap-5 justify-between items-center mx-5 mb-6'>

@@ -1,16 +1,35 @@
-# React + Vite
+## App Title 
+<br>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# HERO.IO
 
-Currently, two official plugins are available:
+<br>
+<br>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description
 
-## React Compiler
+<br>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+#### This React app functions as a mini App Store, allowing users to browse, view, and install various applications. It provides an interactive interface where users can explore different apps, see their details, and simulate installation, all within a responsive and user-friendly environment.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<br>
+
+
+## Technologies Used
+
+<br>
+
+# React JS
+# React Router
+# Tailwind
+# Daisy UI
+# HTML
+# Css
+## Lucide-React
+## Re-charts
+## React-icons
+## React-Toastify
+## React-Icons
+## React-Spinners
+## Axios
