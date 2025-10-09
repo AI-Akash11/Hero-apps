@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import useApps from '../../hooks/useApps';
 import Spinner from '../../components/Spinner/Spinner';
@@ -11,9 +11,29 @@ import { Bar, BarChart, Legend, Tooltip, XAxis, YAxis, ResponsiveContainer } fro
 const AppDetails = () => {
     const { id } = useParams();
     const { apps, loading } = useApps();
+    const [isInstalled, setIsInstalled] = useState(false);
     const appD = apps.find(a => String(a.id) === id)
     if (loading) return <Spinner></Spinner>
     const { image, title, companyName, description, downloads, ratingAvg, size, reviews, ratings } = appD;
+
+    const handleAddToInstallation = () => {
+        const existingApps = JSON.parse(localStorage.getItem('installed'));
+        let updatedApps = [];
+        if(existingApps){
+            const isDuplicate = existingApps.some(a=> a.id === appD.id);
+            if(isDuplicate){
+                alert("app is already installed");
+                return;
+            }
+            updatedApps = [...existingApps,appD]
+        } else{
+            updatedApps.push(appD)
+        }
+        localStorage.setItem('installed', JSON.stringify(updatedApps));
+        setIsInstalled(true);
+    }
+
+    console.log(isInstalled);
     return (
         <div className='p-5 md:p-10 lg:p-15'>
             <div className='flex flex-col lg:flex-row gap-10 border-b-1 pb-5 md:pb-10 items-center'>
@@ -42,9 +62,10 @@ const AppDetails = () => {
                             <p className='font-bold text-5xl'>{reviews}</p>
                         </div>
                     </div>
-                    <button className="btn bg-[#00D390] text-white">Install Now ({size} MB)</button>
+                    <button disabled={isInstalled} onClick={handleAddToInstallation} className="btn bg-[#00D390] text-white">{isInstalled ? 'Installed' : `Install Now (${size} MB)`}</button>
                 </div>
             </div>
+            {/* barchart */}
             <div className='border-b-1 py-5 md:py-10 w-full'>
                 <div className="w-full h-[400px]">
                     <ResponsiveContainer width="100%" height="100%">
@@ -61,7 +82,7 @@ const AppDetails = () => {
                     </ResponsiveContainer>
                 </div>
             </div>
-
+            {/* description */}
             <div className='pt-5 md:pt-10'>
                 <p className='font-semibold text-2xl md:text-3xl mb-2 md:mb-4'>Description</p>
                 <p className='text-gray-500 text-sm md:text-base'>{description}</p>
